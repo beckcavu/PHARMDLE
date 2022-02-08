@@ -11,8 +11,22 @@ var La = ["selena", "cavun"]
 , Ma = "correct"
 , Oa = "absent";
 
-var solutionIndex =  Math.floor(Math.random()*La.length)
-var solutionLength = La[solutionIndex].length
+var Ha = new Date(2021,5,19,0,0,0,0);
+function Na(e, a) {
+    var s = new Date(e)
+        , t = new Date(a).setHours(0, 0, 0, 0) - s.setHours(0, 0, 0, 0);
+    return Math.round(t / 864e5)
+}
+function Da(e) {
+    var a, s = Ga(e);
+    return a = s % La.length,
+    La[a]
+}
+function Ga(e) {
+    return Na(Ha, e)
+}
+var solution = Da(Date.now())
+var solutionLength = solution.length
 
 this.wordle = this.wordle || {},
 this.wordle.bundle = function(e) {
@@ -1157,20 +1171,6 @@ this.wordle.bundle = function(e) {
           , s = e % 100;
         return e + (a[(s - 20) % 10] || a[s] || a[0])
     }
-    var Ha = new Date(2021,5,19,0,0,0,0);
-    function Na(e, a) {
-        var s = new Date(e)
-          , t = new Date(a).setHours(0, 0, 0, 0) - s.setHours(0, 0, 0, 0);
-        return Math.round(t / 864e5)
-    }
-    function Da(e) {
-        var a, s = Ga(e);
-        return a = Math.floor(Math.random()*La.length),
-        La[solutionIndex]
-    }
-    function Ga(e) {
-        return Na(Ha, e)
-    }
     var Ba = "abcdefghijklmnopqrstuvwxyz"
       , Fa = [].concat(g(Ba.split("").slice(13)), g(Ba.split("").slice(0, 13)));
     function Wa(e) {
@@ -1260,7 +1260,7 @@ this.wordle.bundle = function(e) {
             }),
             e.today = new Date;
             var o = za();
-            return e.lastPlayedTs != o.lastPlayedTs,
+            return e.lastPlayedTs = o.lastPlayedTs,
             !e.lastPlayedTs || Na(new Date(e.lastPlayedTs), e.today) >= 1 ? (e.boardState = new Array(6).fill(""),
             e.evaluations = new Array(6).fill(null),
             e.solution = Da(e.today),
@@ -2148,7 +2148,7 @@ this.wordle.bundle = function(e) {
     }(c(HTMLElement));
     customElements.define("game-switch", Ps);
     var $s = document.createElement("template");
-    $s.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Hi! If you find an issue or want to suggest a word, <a href="mailto:beckcav1@gmail.com">send me an email</a> Happy Pharmdles -CB</p>\n <p>Guess the <strong>PHARMDLE</strong> in 6 tries.</p>\n      <p>Each guess must be a valid word. Hit the enter button to submit.</p>\n      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>\n      <div class="examples">\n        <p><strong>Examples</strong></p>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="w" evaluation="correct" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="r"></game-tile>\n            <game-tile letter="y"></game-tile>\n          </div>\n          <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="p"></game-tile>\n            <game-tile letter="i" evaluation="present" reveal></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="s"></game-tile>\n          </div>\n          <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="v"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="g"></game-tile>\n            <game-tile letter="u" evaluation="absent" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n          </div>\n          <p>The letter <strong>U</strong> is not in the word in any spot.</p>\n        </div>\n      </div>\n      <p><strong>A new PHARMDLE will be available each day!<strong></p>\n    </div>\n  </section>\n';
+    $s.innerHTML = '\n  <style>\n  .instructions {\n    font-size: 14px;\n    color: var(--color-tone-1)\n  }\n\n  .examples {\n    border-bottom: 1px solid var(--color-tone-4);\n    border-top: 1px solid var(--color-tone-4);\n  }\n\n  .example {\n    margin-top: 24px;\n    margin-bottom: 24px;\n  }\n\n  game-tile {\n    width: 40px;\n    height: 40px;\n  }\n\n  :host([page]) section {\n    padding: 16px;\n    padding-top: 0px;\n  }\n\n  </style>\n  <section>\n    <div class="instructions">\n      <p>Guess the <strong>PHARMDLE</strong> in 6 tries.</p>\n      <p>Each guess must be a valid 5 letter word. Hit the enter button to submit.</p>\n      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>\n      <div class="examples">\n        <p><strong>Examples</strong></p>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="w" evaluation="correct" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="r"></game-tile>\n            <game-tile letter="y"></game-tile>\n          </div>\n          <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="p"></game-tile>\n            <game-tile letter="i" evaluation="present" reveal></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="l"></game-tile>\n            <game-tile letter="s"></game-tile>\n          </div>\n          <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>\n        </div>\n        <div class="example">\n          <div class="row">\n            <game-tile letter="v"></game-tile>\n            <game-tile letter="a"></game-tile>\n            <game-tile letter="g"></game-tile>\n            <game-tile letter="u" evaluation="absent" reveal></game-tile>\n            <game-tile letter="e"></game-tile>\n          </div>\n          <p>The letter <strong>U</strong> is not in the word in any spot.</p>\n        </div>\n      </div>\n      <p><strong>A new PHARMDLE will be available each day!<strong></p>\n    </div>\n  </section>\n';
     var Hs = function(e) {
         r(t, e);
         var a = h(t);
