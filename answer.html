@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
     <body>
-        <button type="button" onclick="getAnswer()">Get Todays Solution</button>
-    </body>
+    <script>
+        $(document).ready(() => {
+            document.body.innerHTML = JSON.stringify(getAnswer());
+        })
+    </script>
     <script src="main.e65ce0a5.js"></script>
+    </body>
 </html>

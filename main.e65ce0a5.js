@@ -91,7 +91,7 @@ var solution = Da(Date.now())
 var solutionLength = solution.length
 
 function getAnswer() {
-    alert(solution);
+    return {"answer": solution}
 }
 
 this.wordle = this.wordle || {},
